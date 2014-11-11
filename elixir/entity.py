@@ -934,7 +934,7 @@ def setup_entities(entities):
     for method_name in (
             'setup_autoload_table', 'create_pk_cols', 'setup_relkeys',
             'before_table', 'setup_table', 'setup_reltables', 'after_table',
-            'setup_events',
+            #'setup_events',
             'before_mapper', 'setup_mapper', 'after_mapper',
             'setup_properties',
             'finalize'):
