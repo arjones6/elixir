@@ -2,6 +2,7 @@
 test many to many relationships
 """
 
+from sqlalchemy.orm import configure_mappers
 from elixir import *
 import elixir
 
@@ -27,7 +28,7 @@ class TestManyToMany(object):
             as_ = ManyToMany('A')
 
         setup_all(True)
-        A.mapper.compile()
+        configure_mappers()
 
         # check m2m table was generated correctly
         m2m_table = A.bs_.property.secondary
@@ -63,7 +64,7 @@ class TestManyToMany(object):
             as_ = ManyToMany('A')
 
         setup_all(True)
-        A.mapper.compile()
+        configure_mappers()
 
         assert A.bs_.property.secondary.info['test'] is True
 
@@ -77,7 +78,7 @@ class TestManyToMany(object):
             as_ = ManyToMany('A')
 
         setup_all(True)
-        A.mapper.compile()
+        configure_mappers()
 
         options_defaults['table_options'] = {}
 
@@ -101,7 +102,7 @@ class TestManyToMany(object):
         elixir.options.M2MCOL_NAMEFORMAT = elixir.options.NEW_M2MCOL_NAMEFORMAT
 
         # check m2m table was generated correctly
-        A.mapper.compile()
+        configure_mappers()
         m2m_table = A.bs_.property.secondary
         assert m2m_table.name in metadata.tables
 
@@ -123,7 +124,7 @@ class TestManyToMany(object):
             as_ = ManyToMany('A')
 
         setup_all(True)
-        A.mapper.compile()
+        configure_mappers()
 
         # revert to original format
         elixir.options.M2MCOL_NAMEFORMAT = elixir.options.NEW_M2MCOL_NAMEFORMAT
@@ -280,7 +281,7 @@ class TestManyToMany(object):
         setup_all(True)
 
         # check column names were generated correctly
-        A.mapper.compile()
+        configure_mappers()
         m2m_cols = A.bs_.property.secondary.columns
         assert 'a_id' in m2m_cols
         assert 'b_id' in m2m_cols

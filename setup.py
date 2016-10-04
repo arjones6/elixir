@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 
 setup(name="elixir",
-      version="0.7.3",
+      version="1.0.0",
       description="Declarative Mapper for SQLAlchemy",
       long_description="""
 Elixir
@@ -24,7 +24,7 @@ definitions.
       url="http://elixir.ematia.de",
       license = "MIT License",
       install_requires = [
-          "sqlalchemy >= 0.4.0, < 0.8.0"
+          "sqlalchemy >= 0.8.0"
       ],
       packages=find_packages(exclude=['ez_setup', 'tests', 'examples']),
       classifiers=[
