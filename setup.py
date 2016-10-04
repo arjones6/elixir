@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 
 setup(name="Elixir",
-      version="0.7.1",
+      version="0.7.2",
       description="Declarative Mapper for SQLAlchemy",
       long_description="""
 Elixir
@@ -18,15 +18,13 @@ TurboEntity project but does not intend to replace SQLAlchemy's core features,
 and instead focuses on providing a simpler syntax for defining model objects
 when you do not need the full expressiveness of SQLAlchemy's manual mapper
 definitions.
-
-SVN version: <http://elixir.ematia.de/svn/elixir/trunk#egg=Elixir-dev>
 """,
       author="Gaetan de Menten, Daniel Haus and Jonathan LaCour",
       author_email="sqlelixir@googlegroups.com",
       url="http://elixir.ematia.de",
       license = "MIT License",
       install_requires = [
-          "SQLAlchemy >= 0.4.0"
+          "SQLAlchemy >= 0.4.0, < 0.8.0"
       ],
       packages=find_packages(exclude=['ez_setup', 'tests', 'examples']),
       classifiers=[
