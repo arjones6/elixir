@@ -3,8 +3,6 @@ This module provides the ``Entity`` base class, as well as its metaclass
 ``EntityMeta``.
 '''
 
-from py23compat import sorted
-
 import sys
 import types
 import warnings

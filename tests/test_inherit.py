@@ -4,7 +4,6 @@ test inheritance
 
 from elixir import *
 import elixir
-from elixir.py23compat import sort_list
 
 def setup():
     metadata.bind = 'sqlite://'
@@ -54,7 +53,7 @@ def do_tst(inheritance, polymorphic, expected_res):
     res = {}
     for class_ in (A, B, C, D, E):
         res[class_.__name__] = class_.query.all()
-        sort_list(res[class_.__name__], key=lambda o: o.__class__.__name__)
+        res[class_.__name__].sort(key=lambda o: o.__class__.__name__)
 
     for query_class in ('A', 'B', 'C', 'D', 'E'):
 #        print res[query_class], expected_res[query_class]
