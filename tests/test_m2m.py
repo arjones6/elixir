@@ -463,8 +463,8 @@ class TestManyToMany(object):
         from sqlalchemy import Table, Column, ForeignKey, ForeignKeyConstraint
 
         a_b = Table('a_b', metadata,
-                    Column('a_key1', None),
-                    Column('a_key2', None),
+                    Column('a_key1', Integer),
+                    Column('a_key2', String(40)),
                     Column('b_id', None, ForeignKey('b.id')),
                     ForeignKeyConstraint(['a_key1', 'a_key2'],
                                          ['a.key1', 'a.key2']))

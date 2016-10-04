@@ -437,19 +437,10 @@ class EntityDescriptor(object):
             if hasattr(builder, what):
                 getattr(builder, what)()
 
-    def add_column(self, col, check_duplicate=None):
-        '''when check_duplicate is None, the value of the allowcoloverride
-        option of the entity is used.
-        '''
-        if check_duplicate is None:
-            check_duplicate = not self.allowcoloverride
-
+    def add_column(self, col):
         if col.key in self._columns:
-            if check_duplicate:
-                raise Exception("Column '%s' already exist in '%s' ! " %
-                                (col.key, self.entity.__name__))
-            else:
-                del self._columns[col.key]
+            raise Exception("Column '%s' already exist in '%s' ! " %
+                            (col.key, self.entity.__name__))
         self._columns.add(col)
 
         if col.primary_key:
@@ -457,7 +448,7 @@ class EntityDescriptor(object):
 
         table = type.__getattribute__(self.entity, 'table')
         if table is not None:
-            if check_duplicate and col.key in table.columns.keys():
+            if col.key in table.columns.keys():
                 raise Exception("Column '%s' already exist in table '%s' ! " %
                                 (col.key, table.name))
             table.append_column(col)
@@ -471,8 +462,8 @@ class EntityDescriptor(object):
         if table is not None:
             table.append_constraint(constraint)
 
-    def add_property(self, name, property, check_duplicate=True):
-        if check_duplicate and name in self.properties:
+    def add_property(self, name, property):
+        if name in self.properties:
             raise Exception("property '%s' already exist in '%s' ! " %
                             (name, self.entity.__name__))
         self.properties[name] = property

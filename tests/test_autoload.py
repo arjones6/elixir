@@ -211,27 +211,6 @@ class TestAutoload(object):
 
         setup_entity_raise(A)
 
-    def test_override_pk(self):
-        self._create_table_a()
-
-        class A(Entity):
-            using_options(allowcoloverride=True)
-
-            id = Field(Integer, primary_key=True)
-
-        setup_entities([A])
-
-    def test_override_non_pk(self):
-        self._create_table_a()
-
-        class A(Entity):
-            using_options(allowcoloverride=True)
-
-            name = Field(String(30))
-
-        setup_entities([A])
-        assert isinstance(A.table.columns['name'].type, String)
-
     # ---------------
 
     def test_nopk(self):
@@ -290,6 +269,6 @@ class TestAutoload(object):
 
         setup_all(True)
 
-        colname = Item.table.c['owner_user_id'].foreign_keys[0].column.name
+        colname = list(Item.table.c['owner_user_id'].foreign_keys)[0].column.name
         assert colname == 'user_id'
 
