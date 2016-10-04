@@ -86,10 +86,8 @@ def setup_all(create_tables=False, *args, **kwargs):
     '''Setup the table and mapper of all entities in the default entity
     collection.
 
-    This is called automatically if any entity of the collection is configured
-    with the `autosetup` option and it is first accessed,
-    instanciated (called) or the create_all method of a metadata containing
-    tables from any of those entities is called.
+    This is called automatically if the create_all method of a metadata 
+    containing tables from any of those entities is called.
     '''
     setup_entities(entities)
 
