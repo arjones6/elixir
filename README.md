@@ -1,6 +1,7 @@
 # Elixir
 
-Based on a fork of [Elixir 0.7.1](https://pypi.python.org/pypi/Elixir). Original documentation [archived here](http://web.archive.org/web/20150101144640/http://elixir.ematia.de/trac/wiki).
+Forked from [Elixir 0.7.1](https://pypi.python.org/pypi/Elixir) for internal use and support.
+Original documentation [archived here](http://web.archive.org/web/20150101144640/http://elixir.ematia.de/trac/wiki).
 
 ## About
 
