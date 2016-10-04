@@ -51,7 +51,7 @@ def setup():
         Record(title=title, artist=artist, year=year, genres=[genre])
 
     session.commit()
-    session.clear()
+    session.close()
 
 
 def teardown():
@@ -60,7 +60,7 @@ def teardown():
 
 class TestOrderBy(object):
     def teardown(self):
-        session.clear()
+        session.close()
 
     def test_mapper_order_by(self):
         records = Record.query.all()

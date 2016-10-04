@@ -49,7 +49,7 @@ def do_tst(inheritance, polymorphic, expected_res):
     d1 = D(data1='d1', data4='d4')
 
     session.commit()
-    session.clear()
+    session.close()
 
     res = {}
     for class_ in (A, B, C, D, E):
@@ -170,7 +170,7 @@ class TestInheritance(object):
         b1 = B(name='b1', data="b", some_c=c1)
 
         session.commit()
-        session.clear()
+        session.close()
 
         for a in A.query.all():
             if isinstance(a, (B, C)):

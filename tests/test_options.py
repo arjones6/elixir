@@ -4,7 +4,8 @@ test options
 
 from sqlalchemy import UniqueConstraint, create_engine, Column
 from sqlalchemy.orm import scoped_session, sessionmaker
-from sqlalchemy.exceptions import SQLError, ConcurrentModificationError
+from sqlalchemy.exc import StatementError
+from sqlalchemy.orm.exc import ConcurrentModificationError
 from elixir import *
 
 class TestOptions(object):
@@ -25,19 +26,19 @@ class TestOptions(object):
 
         p1 = Person(name='Daniel')
         session.commit()
-        session.clear()
+        session.close()
 
         person = Person.query.first()
         person.name = 'Gaetan'
         session.commit()
         assert person.row_version == 2
-        session.clear()
+        session.close()
 
         person = Person.query.first()
         person.name = 'Jonathan'
         session.commit()
         assert person.row_version == 3
-        session.clear()
+        session.close()
 
         # check that a concurrent modification raises exception
         p1 = Person.query.first()
@@ -222,7 +223,7 @@ class TestTableOptions(object):
         try:
             session.commit()
             assert False
-        except SQLError:
+        except StatementError:
             pass
 
     def test_several_statements(self):
@@ -243,14 +244,14 @@ class TestTableOptions(object):
         try:
             session.commit()
             assert False
-        except SQLError:
+        except StatementError:
             session.close()
 
         a100 = A(name1='1', name2='0', name3='0')
         try:
             session.commit()
             assert False
-        except SQLError:
+        except StatementError:
             session.close()
 
     def test_unique_constraint_many_to_one(self):
@@ -281,7 +282,7 @@ class TestTableOptions(object):
         raised = False
         try:
             session.commit()
-        except SQLError:
+        except StatementError:
             raised = True
 
         assert raised

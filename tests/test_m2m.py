@@ -47,7 +47,7 @@ class TestManyToMany(object):
         b1 = B(name='b1', as_=[A(name='a1')])
 
         session.commit()
-        session.clear()
+        session.close()
 
         a = A.query.one()
         b = B.query.one()
@@ -158,7 +158,7 @@ class TestManyToMany(object):
         a = A(name='a1', links_to=[A(name='a2')])
 
         session.commit()
-        session.clear()
+        session.close()
 
         del A
         del B
@@ -231,7 +231,7 @@ class TestManyToMany(object):
         a = A(name='a1', links_to=[A(name='a2')])
 
         session.commit()
-        session.clear()
+        session.close()
 
         del A
         del B
@@ -289,7 +289,7 @@ class TestManyToMany(object):
         b1 = B(name='b1', as_=[A(name='a1')])
 
         session.commit()
-        session.clear()
+        session.close()
 
         a = A.query.one()
         b = B.query.one()
@@ -313,7 +313,7 @@ class TestManyToMany(object):
         b1 = B(name='b1', as_=[A(key1=10, key2='a1')])
 
         session.commit()
-        session.clear()
+        session.close()
 
         a = A.query.one()
         b = B.query.one()
@@ -338,7 +338,7 @@ class TestManyToMany(object):
                           rel2=[B(name='b3'), B(name='b4'), b1])
 
         session.commit()
-        session.clear()
+        session.close()
 
         a1 = A.query.one()
         b1 = B.get_by(name='b1')
@@ -362,7 +362,7 @@ class TestManyToMany(object):
         barney.friends.append(homer)
 
         session.commit()
-        session.clear()
+        session.close()
 
         homer = Person.get_by(name="Homer")
         barney = Person.get_by(name="Barney")
@@ -389,7 +389,7 @@ class TestManyToMany(object):
         barney.friends.append(homer)
 
         session.commit()
-        session.clear()
+        session.close()
 
         homer = Person.get_by(name="Homer")
         barney = Person.get_by(name="Barney")
@@ -418,7 +418,7 @@ class TestManyToMany(object):
         a3 = A(name='a3')
 
         session.commit()
-        session.clear()
+        session.close()
 
         a1 = A.get_by(name='a1')
         a2 = A.get_by(name='a2')
@@ -451,7 +451,7 @@ class TestManyToMany(object):
         b1 = B(name='b1', as_=[A(key1=10, key2='a1')])
 
         session.commit()
-        session.clear()
+        session.close()
 
         a = A.query.one()
         b = B.query.one()
@@ -486,7 +486,7 @@ class TestManyToMany(object):
         b1 = B(name='b1', as_=[A(key1=10, key2='a1')])
 
         session.commit()
-        session.clear()
+        session.close()
 
         a = A.query.one()
         b = B.query.one()
@@ -523,7 +523,7 @@ class TestManyToMany(object):
         a1 = A(key1=10, key2='a1', bs_=[B(name='b1')])
 
         session.commit()
-        session.clear()
+        session.close()
 
         a = A.query.one()
         b = B.query.one()
