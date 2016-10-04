@@ -314,47 +314,6 @@ class EntityDescriptor(object):
     def after_table(self):
         self.call_builders('after_table')
 
-    def setup_events(self):
-        def make_proxy_method(methods):
-            def proxy_method(self, mapper, connection, instance):
-                for func in methods:
-                    ret = func(instance)
-                    # I couldn't commit myself to force people to
-                    # systematicaly return EXT_CONTINUE in all their event
-                    # methods.
-                    # But not doing that diverge to how SQLAlchemy works.
-                    # I should try to convince Mike to do EXT_CONTINUE by
-                    # default, and stop processing as the special case.
-#                    if ret != EXT_CONTINUE:
-                    if ret is not None and ret != EXT_CONTINUE:
-                        return ret
-                return EXT_CONTINUE
-            return proxy_method
-
-        # create a list of callbacks for each event
-        methods = {}
-
-        all_methods = getmembers(self.entity,
-                                 lambda a: isinstance(a, types.MethodType))
-
-        for name, method in all_methods:
-            for event in getattr(method, '_elixir_events', []):
-                event_methods = methods.setdefault(event, [])
-                event_methods.append(method)
-
-        if not methods:
-            return
-
-        # transform that list into methods themselves
-        for event in methods:
-            methods[event] = make_proxy_method(methods[event])
-
-        # create a custom mapper extension class, tailored to our entity
-        ext = type('EventMapperExtension', (MapperExtension,), methods)()
-
-        # then, make sure that the entity's mapper has our mapper extension
-        self.add_mapper_extension(ext)
-
     def before_mapper(self):
         self.call_builders('before_mapper')
 
@@ -934,7 +893,6 @@ def setup_entities(entities):
     for method_name in (
             'setup_autoload_table', 'create_pk_cols', 'setup_relkeys',
             'before_table', 'setup_table', 'setup_reltables', 'after_table',
-            #'setup_events',
             'before_mapper', 'setup_mapper', 'after_mapper',
             'setup_properties',
             'finalize'):
