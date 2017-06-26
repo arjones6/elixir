@@ -16,3 +16,21 @@ TurboEntity project but does not intend to replace SQLAlchemy's core features,
 and instead focuses on providing a simpler syntax for defining model objects
 when you do not need the full expressiveness of SQLAlchemy's manual mapper
 definitions.
+
+## Running the Tests
+
+Elixir requires `nose` for tests:
+```bash
+$ pip install nose
+```
+
+Alternatively, you may use the `build-virtualenv.sh` script:
+```bash
+$ PYTHON=[optional-path-to-python] ./build-virtualenv.sh
+$ source virtualenv/bin/activate
+```
+
+Then to run the tests from the repo root:
+```bash
+$ nosetests -v
+```

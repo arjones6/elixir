@@ -1,5 +1,9 @@
+# Temporary files
+*.swp
+
 # Virtualenv
-virtualenv/
+virtualenv
+virtualenv-*
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
