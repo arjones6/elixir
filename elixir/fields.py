@@ -105,6 +105,12 @@ Here is a quick example of how to use ``has_field``.
         has_field('id', Integer, primary_key=True)
         has_field('name', String(50))
 '''
+from __future__ import absolute_import
+from __future__ import division
+from __future__ import print_function
+from __future__ import unicode_literals
+import six
+
 from sqlalchemy import Column
 from sqlalchemy.orm import deferred, synonym
 from sqlalchemy.ext.associationproxy import association_proxy
@@ -162,7 +168,7 @@ class Field(Property):
     def create_properties(self):
         if self.deferred:
             group = None
-            if isinstance(self.deferred, basestring):
+            if isinstance(self.deferred, six.string_types):
                 group = self.deferred
             self.property = deferred(self.column, group=group)
         elif self.name != self.colname:

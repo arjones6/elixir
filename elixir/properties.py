@@ -29,6 +29,11 @@ Here is a quick example of how to use ``has_property``.
                      lambda c: column_property(
                          (c.quantity * c.unit_price).label('price')))
 '''
+from __future__ import absolute_import
+from __future__ import division
+from __future__ import print_function
+from __future__ import unicode_literals
+import six
 
 from elixir.statements import PropertyStatement
 from sqlalchemy.orm import column_property, synonym
@@ -105,11 +110,10 @@ class CounterMeta(type):
         return instance
 
 
-class Property(EntityBuilder):
+class Property(six.with_metaclass(CounterMeta, EntityBuilder)):
     '''
     Abstract base class for all properties of an Entity.
     '''
-    __metaclass__ = CounterMeta
 
     def __init__(self, *args, **kwargs):
         self.entity = None
