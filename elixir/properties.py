@@ -30,9 +30,7 @@ Here is a quick example of how to use ``has_property``.
                          (c.quantity * c.unit_price).label('price')))
 '''
 from __future__ import absolute_import
-from __future__ import division
 from __future__ import print_function
-from __future__ import unicode_literals
 import six
 
 from elixir.statements import PropertyStatement

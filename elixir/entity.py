@@ -3,9 +3,7 @@ This module provides the ``Entity`` base class, as well as its metaclass
 ``EntityMeta``.
 '''
 from __future__ import absolute_import
-from __future__ import division
 from __future__ import print_function
-from __future__ import unicode_literals
 import six
 
 import sys

@@ -171,9 +171,7 @@ work on base classes (because normal options do not and should not propagate to
 the children classes).
 '''
 from __future__ import absolute_import
-from __future__ import division
 from __future__ import print_function
-from __future__ import unicode_literals
 import six
 
 from sqlalchemy import Integer, String

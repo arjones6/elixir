@@ -106,9 +106,7 @@ Here is a quick example of how to use ``has_field``.
         has_field('name', String(50))
 '''
 from __future__ import absolute_import
-from __future__ import division
 from __future__ import print_function
-from __future__ import unicode_literals
 import six
 
 from sqlalchemy import Column
