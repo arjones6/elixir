@@ -1,6 +1,11 @@
 """
 test options
 """
+from __future__ import absolute_import
+from __future__ import division
+from __future__ import print_function
+from __future__ import unicode_literals
+import six
 
 from sqlalchemy import UniqueConstraint, create_engine, Column
 from sqlalchemy.orm import scoped_session, sessionmaker

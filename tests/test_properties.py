@@ -1,6 +1,11 @@
 """
 test special properties (eg. column_property, ...)
 """
+from __future__ import absolute_import
+from __future__ import division
+from __future__ import print_function
+from __future__ import unicode_literals
+import six
 
 from sqlalchemy import select, func
 from sqlalchemy.orm import column_property
@@ -185,8 +190,8 @@ class TestSpecialProperties(object):
         setup_all(True)
 
         alexandre = Person(
-            name = u'Alexandre da Silva',
-            email_address = u'x@y.com'
+            name = 'Alexandre da Silva',
+            email_address = 'x@y.com'
         )
         johann = User(
             name = 'Johann Felipe Voigt',

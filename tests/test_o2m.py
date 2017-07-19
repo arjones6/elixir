@@ -1,6 +1,11 @@
 """
 test one to many relationships
 """
+from __future__ import absolute_import
+from __future__ import division
+from __future__ import print_function
+from __future__ import unicode_literals
+import six
 
 from elixir import *
 from sqlalchemy import and_
@@ -98,7 +103,7 @@ class TestOneToMany(object):
         class User(Entity):
             name = Field(String(50))
             boston_addresses = OneToMany('Address', primaryjoin=lambda:
-                and_(Address.user_id == User.id, Address.city == u'Boston'),
+                and_(Address.user_id == User.id, Address.city == 'Boston'),
                 viewonly=True
             )
             addresses = OneToMany('Address')
@@ -111,10 +116,10 @@ class TestOneToMany(object):
         setup_all(True)
 
         user = User(name="u1",
-                    addresses=[Address(street=u"Queen Astrid Avenue, 32",
-                                       city=u"Brussels"),
-                               Address(street=u"Cambridge Street, 5",
-                                       city=u"Boston")])
+                    addresses=[Address(street="Queen Astrid Avenue, 32",
+                                       city="Brussels"),
+                               Address(street="Cambridge Street, 5",
+                                       city="Boston")])
 
         session.commit()
         session.close()
@@ -128,7 +133,7 @@ class TestOneToMany(object):
         class User(Entity):
             name = Field(String(50))
             boston_addresses = OneToMany('Address', filter=lambda c:
-                                         c.city == u'Boston')
+                                         c.city == 'Boston')
             addresses = OneToMany('Address')
 
         class Address(Entity):
@@ -139,10 +144,10 @@ class TestOneToMany(object):
         setup_all(True)
 
         user = User(name="u1",
-                    addresses=[Address(street=u"Queen Astrid Avenue, 32",
-                                       city=u"Brussels"),
-                               Address(street=u"Cambridge Street, 5",
-                                       city=u"Boston")])
+                    addresses=[Address(street="Queen Astrid Avenue, 32",
+                                       city="Brussels"),
+                               Address(street="Cambridge Street, 5",
+                                       city="Boston")])
 
         session.commit()
         session.close()
@@ -167,16 +172,16 @@ class TestOneToMany(object):
         setup_all(True)
 
         user = User(name="u1",
-                    blurbs=[Blurb(text=u'zero'),
-                            Blurb(text=u'one'),
-                            Blurb(text=u'two')])
+                    blurbs=[Blurb(text='zero'),
+                            Blurb(text='one'),
+                            Blurb(text='two')])
 
         session.commit()
         session.close()
 
         user = User.get(1)
         assert len(user.blurbs) == 3
-        user.blurbs.insert(1, Blurb(text=u'new one'))
+        user.blurbs.insert(1, Blurb(text='new one'))
         assert user.blurbs[2].text == "one"
         assert user.blurbs[2].position == 2
         assert user.blurbs[3].text == "two"

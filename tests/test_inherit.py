@@ -1,6 +1,11 @@
 """
 test inheritance
 """
+from __future__ import absolute_import
+from __future__ import division
+from __future__ import print_function
+from __future__ import unicode_literals
+import six
 
 from elixir import *
 import elixir
@@ -108,7 +113,7 @@ class TestInheritance(object):
     def test_inheritance_wh_schema(self):
         # I can only test schema stuff on postgres
         if metadata.bind.name != 'postgres':
-            print "schema test skipped"
+            print("schema test skipped")
             return
 
         class A(Entity):

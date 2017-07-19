@@ -1,6 +1,11 @@
 """
 test autoloaded entities
 """
+from __future__ import absolute_import
+from __future__ import division
+from __future__ import print_function
+from __future__ import unicode_literals
+import six
 
 from sqlalchemy import Table, Column, ForeignKey
 from elixir import *
@@ -9,7 +14,7 @@ import elixir
 def setup_entity_raise(cls):
     try:
         setup_entities([cls])
-    except Exception, e:
+    except Exception as e:
         pass
     else:
         assert False, "Exception did not occur setting up %s" % cls.__name__
