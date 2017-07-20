@@ -93,8 +93,8 @@ class TestPackages(object):
 
         elixir.entities = RelativeEntityCollection()
 
-        from . import db1
-        from . import db2
+        import tests.db1
+        import tests.db2
 
         setup_all(True)
 
