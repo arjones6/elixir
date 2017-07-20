@@ -1,6 +1,11 @@
 """
 test inheritance with abstract entities
 """
+from __future__ import absolute_import
+from __future__ import division
+from __future__ import print_function
+from __future__ import unicode_literals
+import six
 
 import re
 
@@ -159,7 +164,7 @@ class TestAbstractInheritance(object):
         assert DatedContact._descriptor.identity == 'dated_contact'
         assert DatedContact.table.name == 'dated_contact'
 
-        contact1 = DatedContact(first_name=u"Guido", last_name=u"van Rossum")
+        contact1 = DatedContact(first_name="Guido", last_name="van Rossum")
         session.commit()
 
     def test_mixed_inheritance(self):
@@ -191,7 +196,7 @@ class TestAbstractInheritance(object):
         assert MixedDatedContact._descriptor.identity == 'mixed_dated_contact'
         assert MixedDatedContact.table.name == 'mixed_dated_contact'
 
-        contact1 = MixedDatedContact(first_name=u"Guido",
-                                     last_name=u"van Rossum")
+        contact1 = MixedDatedContact(first_name="Guido",
+                                     last_name="van Rossum")
         session.commit()
 

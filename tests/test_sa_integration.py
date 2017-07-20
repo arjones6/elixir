@@ -1,6 +1,11 @@
 """
 test integrating Elixir entities with plain SQLAlchemy defined classes
 """
+from __future__ import absolute_import
+from __future__ import division
+from __future__ import print_function
+from __future__ import unicode_literals
+import six
 
 from sqlalchemy.orm import *
 from sqlalchemy import *
