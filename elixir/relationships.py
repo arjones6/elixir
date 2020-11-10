@@ -414,6 +414,7 @@ import warnings
 from sqlalchemy import ForeignKeyConstraint, Column, Table, and_
 from sqlalchemy.orm import relation, backref, class_mapper
 from sqlalchemy.ext.associationproxy import association_proxy
+from sqlalchemy.schema import conv
 
 from . import options
 from elixir.statements import ClassMutator
@@ -738,7 +739,7 @@ class ManyToOne(Relationship):
                 fk_name = options.CONSTRAINT_NAMEFORMAT % \
                           {'tablename': source_desc.tablename,
                            'colnames': '_'.join(fk_colnames)}
-                self.constraint_kwargs['name'] = fk_name
+                self.constraint_kwargs['name'] = conv(fk_name)
 
             source_desc.add_constraint(
                 ForeignKeyConstraint(fk_colnames, fk_refcols,
